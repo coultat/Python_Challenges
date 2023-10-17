@@ -1,7 +1,10 @@
 # Crear un programa para que nos genere números primos a partir de un int que le pasamos
-
+from my_project.Exceptions import WrongInput
 
 def int_to_roman(number):
+    if not isinstance(number, int):
+        raise WrongInput("wtf?")
+
     result = ''
     num = [1, 4, 5, 9, 10, 40, 50, 90,
            100, 400, 500, 900, 1000]

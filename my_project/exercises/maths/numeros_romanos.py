@@ -1,9 +1,9 @@
 # Crear un programa para que nos genere números primos a partir de un int que le pasamos
-from my_project.Exceptions import WrongInput
+# from my_project.Exceptions import WrongInput
 
 def int_to_roman(number):
-    if not isinstance(number, int):
-        raise WrongInput("wtf?")
+    if not isinstance(number, int) or number < 1:
+        raise ValueError("number to convert must be positive and int")
 
     result = ''
     num = [1, 4, 5, 9, 10, 40, 50, 90,
@@ -25,8 +25,9 @@ def int_to_roman(number):
 
 
 def roman_to_int(number):
-    # num_dict = {1: 'I', 4: 'IV', 5: 'V', 9: 'IX', 10: 'X', 40: 'XL', 50: 'L', 90: 'XC', 100: 'C', 400: 'CD',
-    #                500: 'D', 900: 'CM', 1000: 'M'}
+    if not isinstance(number, str):
+        raise ValueError("Input number must be a string")
+
     rom_dict = {'I': 1, 'IV': 4, 'V': 5, 'IX': 9, 'X': 10, 'XL': 40, 'L': 50, 'XC': 90, 'C': 100, 'CD': 400, 'D': 500,
                 'CM': 900, 'M': 1000}
     acum = 0

@@ -1,3 +1,8 @@
+class ZeroNumberError(Exception):
+    def __init__(self, message="Ya viene el graciosillo a poner el 0 para ver si es par o impar"):
+        super().__init__(message)
+
+
 class NegativeNumberError(Exception):
     def __init__(self, message="Input number must be >= 0"):
         super().__init__(message)

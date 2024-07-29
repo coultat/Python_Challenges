@@ -7,7 +7,7 @@ from schemes.maths import InputMax
 class NumberText:
     def __init__(self, input_number: InputMax):
         self.input_number = str(input_number.choice)
-    async def number_as_text(self):
+    async def number_as_text(self) -> str:
         numbers_dict = {"1": 'UNO', "2": 'DOS', "3": 'TRES', "4": 'CUATRO',
                         "5": 'CINCO', "6": 'SEIS', "7": 'SIETE', "8": 'OCHO',
                         "9": 'NUEVE', "0": 'CERO'}

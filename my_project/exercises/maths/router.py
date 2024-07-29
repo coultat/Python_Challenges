@@ -1,8 +1,8 @@
 import asyncio
 from pydantic import ValidationError
 from schemes.maths import InputMax, Relations, SetPrimeNumbers, InputRomano
-from .numeros_a_texto import number_as_text
-from .numeros_perfectos_III import calc_perfect_numbers
+from .numeros_a_texto import NumberText
+from .numeros_perfectos_III import PerfectNumbers
 from .numeros_primos import CalcularNumerosPrimos
 from fastapi import APIRouter, Query
 from typing import Dict, Set, Union, Tuple
@@ -19,15 +19,15 @@ math_router = APIRouter(prefix="/math")
 @math_router.get("/number_into_text/{input_number}")
 async def numeros_a_texto(input_number: str) -> Dict[str, str]:
     try:
-        return await number_as_text(input_number)
+        return {'result': await NumberText(InputMax(choice=input_number)).number_as_text()}
     except NotIntError:
         return {'error': f'{NotIntError().message}'}
 
 
 @math_router.get("/calc_perfect_numbers/{input_limit}")
-async def calcular_numeros_perfectos(input_limit: str) -> Union[Dict[str, Set[int]], Dict[str, str]]:
+async def calcular_numeros_perfectos(input_limit: str) -> Dict[str, Union[Set[int], str]]:
     try:
-        return await calc_perfect_numbers(input_limit)
+        return {'result': await PerfectNumbers(InputMax(choice=input_limit)).calc_perfect_numbers()}
     except NotIntError:
         return {'error': NotIntError().message}
     except LowLimitError:

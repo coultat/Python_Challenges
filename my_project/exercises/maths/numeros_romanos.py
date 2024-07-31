@@ -1,6 +1,6 @@
 # Crear un programa para que nos genere números primos a partir de un int que le pasamos
 # from my_project.Exceptions import WrongInput
-from schemes.maths import InputRomano
+from my_project.schemes.maths import InputRomano
 
 
 class Romans:

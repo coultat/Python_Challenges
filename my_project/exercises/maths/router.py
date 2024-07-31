@@ -1,6 +1,5 @@
-import asyncio
 from pydantic import ValidationError
-from schemes.maths import InputMax, Relations, SetPrimeNumbers, InputRomano
+from my_project.schemes.maths import InputMax, Relations, SetPrimeNumbers, InputRomano
 from .numeros_a_texto import NumberText
 from .numeros_perfectos_III import PerfectNumbers
 from .numeros_primos import CalcularNumerosPrimos

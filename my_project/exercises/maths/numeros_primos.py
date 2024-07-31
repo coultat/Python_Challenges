@@ -1,5 +1,4 @@
-from exercises.maths.utils.exceptions import NotIntError
-from schemes.maths import SetPrimeNumbers, InputMax, NumeroPrimo, Relations
+from my_project.schemes.maths import SetPrimeNumbers, InputMax, NumeroPrimo, Relations
 
 
 class CalcularNumerosPrimos:

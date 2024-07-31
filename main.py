@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .my_project.exercises.maths.router import math_router
+from my_project.exercises.maths.router import math_router
 
 app = FastAPI()
 

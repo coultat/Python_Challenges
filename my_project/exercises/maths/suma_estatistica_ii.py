@@ -13,7 +13,7 @@ Crear una función llamada calc_sum_and_count_all-numbers_div_by_2_or_7 que
 """
 from typing import Tuple
 
-from schemes.maths import InputMax
+from my_project.schemes.maths import InputMax
 
 
 async def calc_sum_and_count_all_numbers_div_by_2_or_7(input_max: InputMax) -> Tuple[int, int]:

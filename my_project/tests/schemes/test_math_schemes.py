@@ -1,8 +1,7 @@
 import pytest
 from pydantic_core._pydantic_core import ValidationError
 
-from Python_Challenges.my_project.schemes.maths import InputMax, NumeroPrimo
-
+from schemes.maths import InputMax, NumeroPrimo
 
 def test_inputmax():
     # Given the input and the expected result

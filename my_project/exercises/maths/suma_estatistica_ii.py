@@ -11,12 +11,15 @@ Crear una función llamada calc_sum_and_count_all-numbers_div_by_2_or_7 que
                 10, 12, 14, 7)
                 Esa cantidad de números suma 63
 """
+
 from typing import Tuple
 
 from my_project.schemes.maths import InputMax
 
 
-async def calc_sum_and_count_all_numbers_div_by_2_or_7(input_max: InputMax) -> Tuple[int, int]:
+async def calc_sum_and_count_all_numbers_div_by_2_or_7(
+    input_max: InputMax,
+) -> Tuple[int, int]:
     counter = 1
     divisible = set()
     while counter < input_max.choice:

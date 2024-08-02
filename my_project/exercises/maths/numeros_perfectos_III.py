@@ -10,6 +10,7 @@ es un factor positivo de ese número que no sea el propio número.
 Por ejemplo, los divisores propios de 6 son 1, 2 y 3, pero no 6.
 Los siguientes números perfectos son 28, 496 y 8128.
 """
+
 from typing import Set
 
 

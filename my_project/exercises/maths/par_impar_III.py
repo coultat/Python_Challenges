@@ -5,6 +5,7 @@ Crear dos funciones:
 Nota: este fue el primer programa que tuve que hacer en las primeras clases de programación.
 Me dolía la cabeza de tanto pensar cuando lo terminé (y me dijeron la respuesta)
 """
+
 from my_project.exercises.maths.utils.exceptions import ZeroNumberError
 from my_project.schemes.maths import InputMax
 

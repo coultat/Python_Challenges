@@ -7,15 +7,16 @@ from typing import Set, List, Tuple, Optional
 class InputMax(BaseModel):
     choice: str | int
 
-    @field_validator('choice')
+    @field_validator("choice")
     @classmethod
     def check_type(cls, v: str) -> int:
         if isinstance(v, str) and re.findall("(\D|\W|_)", v):
-            invalid = re.findall('(\D|\W|_)', v)
-            raise PydanticCustomError( 'not_a_convertible',
+            invalid = re.findall("(\D|\W|_)", v)
+            raise PydanticCustomError(
+                "not_a_convertible",
                 f"value can't be transformed into int. Wrong character {invalid}",
                 dict(wrong_value=v),
-                                       )
+            )
         return int(v)
 
 
@@ -44,21 +45,22 @@ class InputRomano(BaseModel):
     choice_roman: Optional[str | None] = None
     choice_number: Optional[str | int] = None
 
-    @field_validator('choice_number', 'choice_roman')
+    @field_validator("choice_number", "choice_roman")
     @classmethod
     def check_type(cls, v: str, info: ValidationInfo):
-
-        if info.field_name == 'choice_roman':
+        if info.field_name == "choice_roman":
             if diff := set(v.upper()).difference({"I", "V", "X", "L", "C", "D", "M"}):
                 raise ValueError(f"Invalid characters given as roman {diff}")
 
             return v.upper()
 
-        elif info.field_name == 'choice_number':
-            if invalid := re.findall('(\D|\W|_)', v):
+        elif info.field_name == "choice_number":
+            if invalid := re.findall("(\D|\W|_)", v):
                 raise ValueError(f"input number has invalid characters {invalid}")
 
-            if v == '0':
-                raise ValueError("Come on! You should know that romans didn't have number 0")
+            if v == "0":
+                raise ValueError(
+                    "Come on! You should know that romans didn't have number 0"
+                )
 
             return int(v)

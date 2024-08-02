@@ -17,7 +17,7 @@ class CalcularNumerosPrimos:
                 if i % j == 0 and j != 1:
                     prime = False
                     break
-            if prime == False:
+            if not prime:
                 continue
             else:
                 primes_set.add(NumeroPrimo(number=i))
@@ -30,14 +30,24 @@ class CalcularNumerosPrimos:
         y los que tienen una diferencia de 6, se consideran sexy (6: 11)
         Calcular todos los que tienen estas características hasta un input_max
         """
-        resultados = {'gemelos': 2, 'primos': 4, 'sexy': 6}
-        relation = {'gemelos': [], 'primos': [], 'sexy': []}
+        resultados = {"gemelos": 2, "primos": 4, "sexy": 6}
+        relation = {"gemelos": [], "primos": [], "sexy": []}
         prime_numbers = await self.calcular_primos()
         for res in prime_numbers.set_prime_numbers:
             for familia, diferencia in resultados.items():
                 if res.number % 2 == 0 and res.number != 2:
                     continue
-                if NumeroPrimo(number=res.number + diferencia) in prime_numbers.set_prime_numbers:
-                    relation[familia].append({'parejas': ({'number': res.number}, {'number': res.number + diferencia})})
+                if (
+                    NumeroPrimo(number=res.number + diferencia)
+                    in prime_numbers.set_prime_numbers
+                ):
+                    relation[familia].append(
+                        {
+                            "parejas": (
+                                {"number": res.number},
+                                {"number": res.number + diferencia},
+                            )
+                        }
+                    )
 
         return Relations.model_validate(relation)

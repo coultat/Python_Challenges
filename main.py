@@ -3,7 +3,8 @@ from my_project.exercises.maths.router import math_router
 
 app = FastAPI()
 
-app.include_router(math_router, tags=['maths'])
+app.include_router(math_router, tags=["maths"])
+
 
 @app.get("/test")
 def test():

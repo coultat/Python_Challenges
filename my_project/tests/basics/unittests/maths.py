@@ -1,11 +1,13 @@
 from exercises.maths.numeros_a_texto import NumberText
 from exercises.maths.par_impar_III import ParImpar
 from exercises.maths.suma_basica import Calc
-from exercises.maths.suma_estatistica_ii import calc_sum_and_count_all_numbers_div_by_2_or_7
+from exercises.maths.suma_estatistica_ii import (
+    calc_sum_and_count_all_numbers_div_by_2_or_7,
+)
 from exercises.maths.utils.exceptions import ZeroNumberError
 from schemes.maths import InputMax
-import asyncio
 import pytest
+
 
 @pytest.mark.asyncio
 async def test_suma_basica():
@@ -52,8 +54,8 @@ async def test_wrong_suma_estatistica():
 async def test_par_impar():
     # Given input and two expected result
     first_input = InputMax(choice=43)
-    expected_is_odd = 'is odd'
-    expected_is_not_even = 'is not even'
+    expected_is_odd = "is odd"
+    expected_is_not_even = "is not even"
 
     # When doing the calc
     first_result = await ParImpar(first_input).is_even()
@@ -70,14 +72,14 @@ async def test_par_impar_with_zero():
     first_input = InputMax(choice=0)
 
     with pytest.raises(ZeroNumberError):
-        wrong_result = await ParImpar(first_input).is_odd()
+        _ = await ParImpar(first_input).is_odd()
 
 
 @pytest.mark.asyncio
 async def test_numeros_a_texto():
     # Given the input and the expected result
     number_input = InputMax(choice=33)
-    expected_result = 'TRES TRES'
+    expected_result = "TRES TRES"
 
     # When converting the numbers into text
     result = await NumberText(number_input).number_as_text()

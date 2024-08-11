@@ -1,0 +1,65 @@
+[tool.pytest.ini_options]
+asyncio_mode="auto"
+addopts="--cov --cov-report=lcov:lcov.info"
+filterwarnings = [
+    "ignore:'cgi' is deprecated",
+    "ignore:'crypt' is deprecated"
+]
+
+[tool.ruff]
+src = ["src/python", "tasks.py"]
+line-length = 119
+
+[tool.ruff.lint]
+select = [
+    "E", # pycodestyle errors
+    "W", # pycodestyle warnings
+    "F", # pyflakes
+    "I", # isort
+    "C", # flake8-comprehensions
+    "B", # flake8-bugbear
+    "S608", # hardcoded sql expression
+    # below are temporary disabled warnings ruff can't fix itself
+    #"S", # flake8-bandit
+]
+ignore = [
+    "B008", # Do not perform function calls in argument defaults; Flags all dependency injection of fastapi
+    "C901", # Too complex
+    "F403", # `from .xyz import *` used; unable to detect undefined names
+    "F405", # `xyz` may be undefined, or defined from star imports
+    "E501", # Line too long
+    # below are warnings where ruff fixes look worse than current code (but it should be cleaned up by hand anyway)
+    "C408", # [*] Unnecessary `dict` call (rewrite as a literal)
+    "C416", # [*] Unnecessary `list` call (rewrite as a literal)
+    # below are temporary ignores for warnings ruff can't fix itself
+    "E741", # Ambiguous variable name: `x`
+    "B018", # Found useless expression. Either assign it to a variable or remove it.
+    "B012", # `return` inside `finally` blocks cause exceptions to be silenced"
+    "B020", # Loop control variable `billing_unit` overrides iterable it iterates
+]
+
+[tool.ruff.lint.flake8-tidy-imports]
+# Disallow all relative imports.
+ban-relative-imports = "all"
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"] # don't remove unused imports in __init__.py files
+"*/tests/*" = [ # These are not relevant for Tests
+    "S101", # Use of `assert` detected
+    "S311", # Standard pseudo-random generators are not suitable for cryptographic purpose
+]
+"**/test_*.py" = [ # keep this consistent with the "*/tests/*" above!
+    "S101", # Use of `assert` detected
+    "S311", # Standard pseudo-random generators are not suitable for cryptographic purpose
+]
+
+[tool.ruff.lint.isort]
+detect-same-package = true
+combine-as-imports = true
+section-order = ["future", "standard-library", "third-party", "atlas", "first-party", "local-folder"]
+
+[tool.ruff.lint.isort.sections]
+"atlas" = ["atlas"]
+
+[tool.ruff.lint.flake8-comprehensions]
+allow-dict-calls-with-keyword-arguments = true

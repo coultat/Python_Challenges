@@ -4,6 +4,7 @@ from exercises.recursion.count_digits import count_digits
 from exercises.recursion.ggt import calc_gcd
 from exercises.recursion.reverse_str import reverse_string
 from exercises.recursion.array_min import array_min
+from exercises.recursion.calc_binary import calc_binary
 
 import pytest
 
@@ -42,4 +43,10 @@ async def test_reverse_str(values, expected):
 @pytest.mark.parametrize("values, expected",
                          [([1,2,3,4,5,6,-9], -9)])
 async def test_array_min(values, expected):
-    assert array_min(values) == expected
+    assert await array_min(values) == expected
+
+
+@pytest.mark.parametrize("value, expected",
+                         [(2, '10'), (5, '101')])
+async def test_calc_binary(value, expected):
+    assert await calc_binary(value) == expected

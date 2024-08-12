@@ -1,3 +1,4 @@
+from secrets import choice
 from typing import Dict, Union
 from my_project.schemes.maths import InputMax
 from fastapi import APIRouter, Query
@@ -10,6 +11,12 @@ from my_project.exercises.recursion.fibonacci import fibonacci
 from my_project.exercises.recursion.ggt import calc_gcd
 
 from my_project.exercises.recursion.reverse_str import reverse_string
+
+from my_project.exercises.recursion.array_sum import array_sum
+from my_project.exercises.recursion.calc_binary import calc_binary
+from my_project.schemes.maths import InputList
+
+from my_project.exercises.recursion.array_min import array_min
 
 recursion_router = APIRouter(prefix="/recursion")
 
@@ -51,5 +58,38 @@ async def calcular_reversed_string(
 ) -> Dict[str, Union[str, int]]:
     try:
         return {'result': await reverse_string(palindrome)}
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@recursion_router.get("/calculadora_binaria")
+async def binary_calc(
+        valor: str = Query(..., title="Número para ser calculado en binario"),
+) -> Dict[str, str]:
+    try:
+        valor = InputMax(choice=valor)
+        return {'result': await calc_binary(valor.choice)}
+    except ValidationError as e:
+        return {'error': str(e.args)}
+
+
+@recursion_router.get("/suma_array")
+async def summa_array(
+        valor_lista: list[int] = Query(..., title="Lista de números para que sean sumados")
+) -> Dict[str, Union[int, str]]:
+    try:
+        valor_lista = InputList(choice=valor_lista)
+        return {"result": await array_sum(valor_lista.choice)}
+    except ValidationError as e:
+        return {"error": str(e)}
+
+
+@recursion_router.get("/array_min")
+async def calc_array_min(
+        valor_lista: list[int] = Query(..., title="Intruoduce una lista de números para que devuelva el valor mínimo")
+):
+    try:
+        valor_lista = InputList(choice=valor_lista)
+        return {"result": await array_min(valor_lista.choice)}
     except ValidationError as e:
         return {"error": str(e)}

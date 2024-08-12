@@ -67,11 +67,19 @@ class InputRomano(BaseModel):
 
 
 class InputList(BaseModel):
-    choice: list
+    choice: list[int] | list[str]
+
+    @field_validator("choice", mode="before")
+    @classmethod
+    def get_str_into(cls, v):
+        try:
+            return [int(x) for x in v]
+        except ValueError:
+            raise ValueError
 
     @field_validator("choice")
     @classmethod
     def validate_list_int(cls, v):
-        print(f"lolailo {v}")
         if not all(isinstance(x, int) for x in v):
             raise ValueError
+        return v

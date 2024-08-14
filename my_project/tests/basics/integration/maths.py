@@ -6,9 +6,6 @@ from Python_Challenges.main import app
 client = TestClient(app)
 
 
-def test_lolailo():
-    assert 1 == 1
-
 def test_numeros_a_texto():
     # Given the input_value, the expected result and the url
     input_value = 6

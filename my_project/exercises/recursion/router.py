@@ -47,7 +47,7 @@ async def calcular_minimo_comun_multiplo(
     try:
         primer_numero = InputMax(choice=primer_numero)
         segundo_numero = InputMax(choice=segundo_numero)
-        return {'result': await calc_gcd(primer_numero, segundo_numero)}
+        return {'result': await calc_gcd(primer_numero.choice, segundo_numero.choice)}
     except ValidationError as e:
         return {"error": str(e)}
 

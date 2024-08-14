@@ -13,4 +13,5 @@ async def calc_gcd(a, b):
     """
     if b == 0:
         return a
+
     return await calc_gcd(b, a % b)

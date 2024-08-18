@@ -30,8 +30,8 @@ async def sumatorio(input_number: str) -> Dict[str, Union[str, int]]:
         return {"error": str(e)}
 
 
-@recursion_router.get("/fibonacci/{input_number}")
-async def calcular_fibonacci(input_max: str) -> Dict[str, Union[str, int]]:
+@recursion_router.get("/fibonacci/")
+async def calcular_fibonacci(input_max: str = Query(..., title="Número de veces a ser calculado")) -> Dict[str, Union[str, int]]:
     try:
         input_number = InputMax(choice=input_max)
         return {'result': await fibonacci(input_number.choice)}

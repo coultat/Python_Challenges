@@ -1,7 +1,8 @@
-from pydantic import BaseModel, field_validator, ValidationInfo
-from pydantic_core import PydanticCustomError
 import re
-from typing import Set, List, Tuple, Optional
+from typing import List, Optional, Set, Tuple
+
+from pydantic import BaseModel, ValidationInfo, field_validator
+from pydantic_core import PydanticCustomError
 
 
 class InputMax(BaseModel):
@@ -10,8 +11,8 @@ class InputMax(BaseModel):
     @field_validator("choice")
     @classmethod
     def check_type(cls, v: str) -> int:
-        if isinstance(v, str) and re.findall("(\D|\W|_)", v):
-            invalid = re.findall("(\D|\W|_)", v)
+        if isinstance(v, str) and re.findall(r"(\D|\W|_)", v):
+            invalid = re.findall(r"(\D|\W|_)", v)
             raise PydanticCustomError(
                 "not_a_convertible",
                 f"value can't be transformed into int. Wrong character {invalid}",
@@ -55,13 +56,11 @@ class InputRomano(BaseModel):
             return v.upper()
 
         elif info.field_name == "choice_number":
-            if invalid := re.findall("(\D|\W|_)", v):
+            if invalid := re.findall(r"(\D|\W|_)", v):
                 raise ValueError(f"input number has invalid characters {invalid}")
 
             if v == "0":
-                raise ValueError(
-                    "Come on! You should know that romans didn't have number 0"
-                )
+                raise ValueError("Come on! You should know that romans didn't have number 0")
 
             return int(v)
 
@@ -74,8 +73,8 @@ class InputList(BaseModel):
     def get_str_into(cls, v):
         try:
             return [int(x) for x in v]
-        except ValueError:
-            raise ValueError
+        except ValueError as err:
+            raise ValueError from err
 
     @field_validator("choice")
     @classmethod

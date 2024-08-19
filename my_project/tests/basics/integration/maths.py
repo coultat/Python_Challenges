@@ -1,7 +1,5 @@
 from fastapi.testclient import TestClient
-
-from Python_Challenges.main import app
-
+from main import app
 
 client = TestClient(app)
 

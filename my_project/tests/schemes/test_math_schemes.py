@@ -3,6 +3,7 @@ from pydantic_core._pydantic_core import ValidationError
 
 from schemes.maths import InputMax, NumeroPrimo
 
+
 def test_inputmax():
     # Given the input and the expected result
     int_input = 1

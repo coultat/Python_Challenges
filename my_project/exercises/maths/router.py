@@ -1,17 +1,17 @@
+from typing import Dict, Set, Tuple, Union
+
+from fastapi import APIRouter, Query
+from my_project.schemes.maths import InputMax, InputRomano, Relations, SetPrimeNumbers
 from pydantic import ValidationError
-from my_project.schemes.maths import InputMax, Relations, SetPrimeNumbers, InputRomano
+
 from .numeros_a_texto import NumberText
 from .numeros_perfectos_III import PerfectNumbers
 from .numeros_primos import CalcularNumerosPrimos
-from fastapi import APIRouter, Query
-from typing import Dict, Set, Union, Tuple
-
 from .numeros_romanos import Romans
 from .par_impar_III import ParImpar
 from .suma_basica import Calc
 from .suma_estatistica_ii import calc_sum_and_count_all_numbers_div_by_2_or_7
-from .utils.exceptions import NotIntError, LowLimitError
-
+from .utils.exceptions import LowLimitError, NotIntError
 
 math_router = APIRouter(prefix="/math")
 
@@ -19,9 +19,7 @@ math_router = APIRouter(prefix="/math")
 @math_router.get("/number_into_text/{input_number}")
 async def numeros_a_texto(input_number: str) -> Dict[str, str]:
     try:
-        return {
-            "result": await NumberText(InputMax(choice=input_number)).number_as_text()
-        }
+        return {"result": await NumberText(InputMax(choice=input_number)).number_as_text()}
     except NotIntError:
         return {"error": f"{NotIntError().message}"}
 
@@ -31,11 +29,7 @@ async def calcular_numeros_perfectos(
     input_limit: str,
 ) -> Dict[str, Union[Set[int], str]]:
     try:
-        return {
-            "result": await PerfectNumbers(
-                InputMax(choice=input_limit)
-            ).calc_perfect_numbers()
-        }
+        return {"result": await PerfectNumbers(InputMax(choice=input_limit)).calc_perfect_numbers()}
     except NotIntError:
         return {"error": NotIntError().message}
     except LowLimitError:
@@ -47,11 +41,7 @@ async def calcular_numeros_primos(
     input_limit: str,
 ) -> Union[Dict[str, SetPrimeNumbers], Dict[str, str]]:
     try:
-        return {
-            "result": await CalcularNumerosPrimos(
-                InputMax(choice=input_limit)
-            ).calcular_primos()
-        }
+        return {"result": await CalcularNumerosPrimos(InputMax(choice=input_limit)).calcular_primos()}
     except ValidationError as e:
         return {"error": str(e)}
 
@@ -62,9 +52,7 @@ async def calcular_primos_gemelos_primos_sexy(
 ) -> Union[Dict[str, Relations], Dict[str, str]]:
     try:
         input_limit = InputMax(choice=input_limit)
-        return {
-            "result": await CalcularNumerosPrimos(input_limit).gemelo_primo_sexy_test()
-        }
+        return {"result": await CalcularNumerosPrimos(input_limit).gemelo_primo_sexy_test()}
     except ValidationError as e:
         return {"error": str(e)}
 
@@ -124,8 +112,6 @@ async def suma_estatistica(
 ) -> Dict[str, Union[str, Tuple[int, int]]]:
     try:
         limite_max = InputMax(choice=limite_max)
-        return {
-            "result": await calc_sum_and_count_all_numbers_div_by_2_or_7(limite_max)
-        }
+        return {"result": await calc_sum_and_count_all_numbers_div_by_2_or_7(limite_max)}
     except ValidationError as e:
         return {"error": str(e)}

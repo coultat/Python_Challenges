@@ -1,5 +1,4 @@
 async def calc_binary(value):
-
     if value < 2:
         return str(value)
 

@@ -4,9 +4,7 @@ from my_project.schemes.maths import InputRomano
 
 
 class Romans:
-    def __init__(
-        self, input_roman: InputRomano = None, input_number: InputRomano = None
-    ):
+    def __init__(self, input_roman: InputRomano = None, input_number: InputRomano = None):
         self.roman = input_roman.choice_roman if input_roman is not None else None
         self.number = input_number.choice_number if input_number is not None else None
 

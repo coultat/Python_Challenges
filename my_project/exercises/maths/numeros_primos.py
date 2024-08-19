@@ -1,4 +1,4 @@
-from my_project.schemes.maths import SetPrimeNumbers, InputMax, NumeroPrimo, Relations
+from my_project.schemes.maths import InputMax, NumeroPrimo, Relations, SetPrimeNumbers
 
 
 class CalcularNumerosPrimos:
@@ -37,10 +37,7 @@ class CalcularNumerosPrimos:
             for familia, diferencia in resultados.items():
                 if res.number % 2 == 0 and res.number != 2:
                     continue
-                if (
-                    NumeroPrimo(number=res.number + diferencia)
-                    in prime_numbers.set_prime_numbers
-                ):
+                if NumeroPrimo(number=res.number + diferencia) in prime_numbers.set_prime_numbers:
                     relation[familia].append(
                         {
                             "parejas": (

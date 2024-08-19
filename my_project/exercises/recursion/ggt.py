@@ -1,7 +1,9 @@
 "escribir una función gcd(a, b) que halle el máximo común divisor de los dos números de forma recursiva"
+
 """
 Todos los divisores comunes elevados a la menor de las potencias posibles
 """
+
 
 async def calc_gcd(a, b):
     """

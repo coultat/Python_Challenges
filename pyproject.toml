@@ -7,7 +7,7 @@ filterwarnings = [
 ]
 
 [tool.ruff]
-src = ["src/python", "tasks.py"]
+src = ["my_project/", "tasks.py"]
 line-length = 119
 
 [tool.ruff.lint]

@@ -1,3 +1,5 @@
+import pytest
+
 from exercises.maths.numeros_a_texto import NumberText
 from exercises.maths.par_impar_III import ParImpar
 from exercises.maths.suma_basica import Calc
@@ -6,7 +8,6 @@ from exercises.maths.suma_estatistica_ii import (
 )
 from exercises.maths.utils.exceptions import ZeroNumberError
 from schemes.maths import InputMax
-import pytest
 
 
 @pytest.mark.asyncio

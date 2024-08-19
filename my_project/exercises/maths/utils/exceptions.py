@@ -1,7 +1,5 @@
 class ZeroNumberError(Exception):
-    def __init__(
-        self, message="Ya viene el graciosillo a poner el 0 para ver si es par o impar"
-    ):
+    def __init__(self, message="Ya viene el graciosillo a poner el 0 para ver si es par o impar"):
         super().__init__(message)
 
 
@@ -17,9 +15,7 @@ class NotIntError(Exception):
 
 
 class LowLimitError(Exception):
-    def __init__(
-        self, message="The input number is too low for the calculation", input_number=0
-    ):
+    def __init__(self, message="The input number is too low for the calculation", input_number=0):
         self.message = message
         self.input_number = input_number
         super().__init__(message)

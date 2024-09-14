@@ -16,7 +16,7 @@ from .utils.exceptions import LowLimitError, NotIntError
 math_router = APIRouter(prefix="/math")
 
 
-@math_router.get("/number_into_text/{input_number}")
+@math_router.get("/number_into_text/")
 async def numeros_a_texto(input_number: int = Query(..., description="Número que quieres convertir en texto")) -> Dict[str, str]:
     try:
         return {"result": await NumberText(input_number).number_as_text()}
@@ -24,7 +24,7 @@ async def numeros_a_texto(input_number: int = Query(..., description="Número qu
         return {"error": f"{NotIntError().message}"}
 
 
-@math_router.get("/calc_perfect_numbers/{input_limit}")
+@math_router.get("/calc_perfect_numbers/")
 async def calcular_numeros_perfectos(
     input_limit: str,
 ) -> Dict[str, Union[Set[int], str]]:
@@ -36,7 +36,7 @@ async def calcular_numeros_perfectos(
         return {"error": f"{LowLimitError(input_number=input_limit).message}"}
 
 
-@math_router.get("/calc_prime_numbers/{input_limit}")
+@math_router.get("/calc_prime_numbers/")
 async def calcular_numeros_primos(
     input_limit: int = Query(..., description="Número límite al que iterar buscando números primos ")
 ) -> Union[Dict[str, SetPrimeNumbers], Dict[str, str]]:
@@ -46,7 +46,7 @@ async def calcular_numeros_primos(
         return {"error": str(e)}
 
 
-@math_router.get("/twins_primes_sexy/{input_limit}")
+@math_router.get("/twins_primes_sexy/")
 async def calcular_primos_gemelos_primos_sexy(
     input_limit: int = Query(..., description="Número límite al que llegar calculando números primos"),
 ) -> Union[Dict[str, Relations], Dict[str, str]]:
@@ -56,7 +56,7 @@ async def calcular_primos_gemelos_primos_sexy(
         return {"error": str(e)}
 
 
-@math_router.get("/numeros_enteros_a_romanos/{input_number}")
+@math_router.get("/numeros_enteros_a_romanos/")
 async def calculador_numeros_romanos(input_number: int = Query(..., description="Número arábico para convertir a romano")) -> Dict[str, str]:
     try:
         return {"result": await Romans(input_number=input_number).int_to_roman()}
@@ -64,7 +64,7 @@ async def calculador_numeros_romanos(input_number: int = Query(..., description=
         return {"error": str(e)}
 
 
-@math_router.get("/numeros_romanos_a_enteros/{input_number}")
+@math_router.get("/numeros_romanos_a_enteros/")
 async def calculador_enteros(input_number) -> Dict[str, Union[str, int]]:
     try:
         input_number = InputRomano(choice_roman=input_number)
@@ -73,7 +73,7 @@ async def calculador_enteros(input_number) -> Dict[str, Union[str, int]]:
         return {"error": str(e)}
 
 
-@math_router.get("/es_par/{input_number}")
+@math_router.get("/es_par/")
 async def es_par(input_number) -> Dict[str, str]:
     try:
         input_limit = InputMax(choice=input_number)
@@ -82,7 +82,7 @@ async def es_par(input_number) -> Dict[str, str]:
         return {"error": str(e)}
 
 
-@math_router.get("/es_impar/{input_number}")
+@math_router.get("/es_impar/")
 async def es_impar(input_number) -> Dict[str, str]:
     try:
         input_limit = InputMax(choice=input_number)

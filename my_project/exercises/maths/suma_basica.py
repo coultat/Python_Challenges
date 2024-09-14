@@ -2,7 +2,6 @@
 #     - multiplica dos variables de tipo int
 #     - luego divide a la mitad el resultado anterior
 #     - muestra el resto de dividir el resultado anterior entre 7
-from my_project.schemes.maths import InputMax
 
 
 class Calc:

@@ -1,5 +1,4 @@
 import pytest
-
 from my_project.exercises.recursion.array_min import array_min
 from my_project.exercises.recursion.array_sum import array_sum
 from my_project.exercises.recursion.calc_binary import calc_binary

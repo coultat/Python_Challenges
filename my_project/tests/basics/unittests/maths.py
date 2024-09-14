@@ -1,5 +1,4 @@
 import pytest
-
 from my_project.exercises.maths.numeros_a_texto import NumberText
 from my_project.exercises.maths.par_impar_III import ParImpar
 from my_project.exercises.maths.suma_basica import Calc

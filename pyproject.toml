@@ -66,4 +66,4 @@ allow-dict-calls-with-keyword-arguments = true
 
 [tool.mypy]
 explicit_package_bases = true
-
+exclude = ['env']

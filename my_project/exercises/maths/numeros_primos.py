@@ -1,4 +1,4 @@
-from my_project.schemes.maths import InputMax, NumeroPrimo, Relations, SetPrimeNumbers
+from my_project.schemes.maths import NumeroPrimo, Relations, SetPrimeNumbers
 
 
 class CalcularNumerosPrimos:

@@ -2,7 +2,6 @@
 Escribir una función que convierta los números en texto. Así 7 será "siete", 55 será "cinco cinco"
 """
 
-from my_project.schemes.maths import InputMax
 
 
 class NumberText:

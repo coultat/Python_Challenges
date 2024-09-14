@@ -17,7 +17,9 @@ math_router = APIRouter(prefix="/math")
 
 
 @math_router.get("/number_into_text/")
-async def numeros_a_texto(input_number: int = Query(..., description="Número que quieres convertir en texto")) -> Dict[str, str]:
+async def numeros_a_texto(
+    input_number: int = Query(..., description="Número que quieres convertir en texto"),
+) -> Dict[str, str]:
     try:
         return {"result": await NumberText(input_number).number_as_text()}
     except NotIntError:
@@ -38,7 +40,7 @@ async def calcular_numeros_perfectos(
 
 @math_router.get("/calc_prime_numbers/")
 async def calcular_numeros_primos(
-    input_limit: int = Query(..., description="Número límite al que iterar buscando números primos ")
+    input_limit: int = Query(..., description="Número límite al que iterar buscando números primos "),
 ) -> Union[Dict[str, SetPrimeNumbers], Dict[str, str]]:
     try:
         return {"result": await CalcularNumerosPrimos(input_limit).calcular_primos()}
@@ -57,7 +59,9 @@ async def calcular_primos_gemelos_primos_sexy(
 
 
 @math_router.get("/numeros_enteros_a_romanos/")
-async def calculador_numeros_romanos(input_number: int = Query(..., description="Número arábico para convertir a romano")) -> Dict[str, str]:
+async def calculador_numeros_romanos(
+    input_number: int = Query(..., description="Número arábico para convertir a romano"),
+) -> Dict[str, str]:
     try:
         return {"result": await Romans(input_number=input_number).int_to_roman()}
     except ValidationError as e:

@@ -3,7 +3,6 @@ Escribir una función que convierta los números en texto. Así 7 será "siete",
 """
 
 
-
 class NumberText:
     def __init__(self, input_number: int):
         self.input_number = str(input_number)

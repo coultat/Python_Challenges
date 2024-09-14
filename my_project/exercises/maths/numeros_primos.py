@@ -31,7 +31,11 @@ class CalcularNumerosPrimos:
         Calcular todos los que tienen estas características hasta un input_max
         """
         resultados = {"gemelos": 2, "primos": 4, "sexy": 6}
-        relation: dict[str, list[dict[str, tuple[dict[str, int], dict[str, int]]]]] = {"gemelos": [], "primos": [], "sexy": []}  # Todo change this for a proper pydantic object
+        relation: dict[str, list[dict[str, tuple[dict[str, int], dict[str, int]]]]] = {
+            "gemelos": [],
+            "primos": [],
+            "sexy": [],
+        }  # Todo change this for a proper pydantic object
         prime_numbers = await self.calcular_primos()
         for res in prime_numbers.set_prime_numbers:
             for familia, diferencia in resultados.items():

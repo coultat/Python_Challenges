@@ -28,7 +28,7 @@ async def numeros_a_texto(
 
 @math_router.get("/calc_perfect_numbers/")
 async def calcular_numeros_perfectos(
-    input_limit: str,
+    input_limit: int = Query(..., description="Número para calcular todos los perfectos"),
 ) -> Dict[str, Union[Set[int], str]]:
     try:
         return {"result": await PerfectNumbers(InputMax(choice=input_limit)).calc_perfect_numbers()}
@@ -69,16 +69,21 @@ async def calculador_numeros_romanos(
 
 
 @math_router.get("/numeros_romanos_a_enteros/")
-async def calculador_enteros(input_number) -> Dict[str, Union[str, int]]:
+async def calculador_enteros(
+    input_number: str = Query(..., description="Número Romano para convertir en número entero"),
+) -> Dict[str, Union[str, int]]:
     try:
         input_number = InputRomano(choice_roman=input_number)
         return {"result": await Romans(input_roman=input_number).roman_to_int()}
     except ValidationError as e:
+        print(f"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n {e.args}")
         return {"error": str(e)}
 
 
 @math_router.get("/es_par/")
-async def es_par(input_number) -> Dict[str, str]:
+async def es_par(
+    input_number: int = Query(..., description="Inserta número para saber si es par o no"),
+) -> Dict[str, str]:
     try:
         input_limit = InputMax(choice=input_number)
         return {"result": await ParImpar(input_limit).is_even()}
@@ -87,7 +92,9 @@ async def es_par(input_number) -> Dict[str, str]:
 
 
 @math_router.get("/es_impar/")
-async def es_impar(input_number) -> Dict[str, str]:
+async def es_impar(
+    input_number: int = Query(..., description="Inserta número para saber si es impar o no"),
+) -> Dict[str, str]:
     try:
         input_limit = InputMax(choice=input_number)
         return {"result": await ParImpar(input_limit).is_odd()}

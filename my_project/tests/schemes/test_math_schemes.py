@@ -4,6 +4,8 @@ from pydantic_core._pydantic_core import ValidationError
 
 from my_project.schemes.maths import InputMax
 
+from schemes.maths import NumeroPrimo
+
 
 def test_inputmax():
     # Given the input and the expected result

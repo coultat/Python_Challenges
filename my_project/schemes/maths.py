@@ -52,7 +52,6 @@ class InputRomano(BaseModel):
         if info.field_name == "choice_roman":
             if diff := set(v.upper()).difference({"I", "V", "X", "L", "C", "D", "M"}):
                 raise ValueError(f"Invalid characters given as roman {diff}")
-
             return v.upper()
 
         elif info.field_name == "choice_number":

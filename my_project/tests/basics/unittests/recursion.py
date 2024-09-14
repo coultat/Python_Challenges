@@ -1,12 +1,12 @@
 import pytest
 
-from exercises.recursion.array_min import array_min
-from exercises.recursion.array_sum import array_sum
-from exercises.recursion.calc_binary import calc_binary
-from exercises.recursion.count_digits import count_digits
-from exercises.recursion.fibonacci import fibonacci
-from exercises.recursion.ggt import calc_gcd
-from exercises.recursion.reverse_str import reverse_string
+from my_project.exercises.recursion.array_min import array_min
+from my_project.exercises.recursion.array_sum import array_sum
+from my_project.exercises.recursion.calc_binary import calc_binary
+from my_project.exercises.recursion.count_digits import count_digits
+from my_project.exercises.recursion.fibonacci import fibonacci
+from my_project.exercises.recursion.ggt import calc_gcd
+from my_project.exercises.recursion.reverse_str import reverse_string
 
 
 @pytest.mark.parametrize("values, expected", [([1], 1), ([1, 2, 3], 6), ([1, 2, 3, -7], -1)])

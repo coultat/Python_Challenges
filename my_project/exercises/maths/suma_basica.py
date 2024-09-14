@@ -6,9 +6,9 @@ from my_project.schemes.maths import InputMax
 
 
 class Calc:
-    def __init__(self, m: InputMax, n: InputMax):
-        self.m = m.choice
-        self.n = n.choice
+    def __init__(self, m: int, n: int):
+        self.m = m
+        self.n = n
 
     async def hacer_el_paripe(self) -> int:
         return int((int(self.m * self.n) / 2) % 7)

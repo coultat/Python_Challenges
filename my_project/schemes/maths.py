@@ -1,7 +1,7 @@
 import re
-from typing import List, Optional, Set, Tuple
+from typing import List, Set, Tuple
 
-from pydantic import BaseModel, ValidationInfo, field_validator
+from pydantic import BaseModel, ValidationInfo, field_validator  # type: ignore [attr-defined]
 from pydantic_core import PydanticCustomError
 
 
@@ -22,7 +22,7 @@ class InputMax(BaseModel):
 
 
 class NumeroPrimo(BaseModel):
-    number: str | int
+    number: int
 
     def __hash__(self):
         return hash(self.number)
@@ -43,8 +43,8 @@ class Relations(BaseModel):
 
 
 class InputRomano(BaseModel):
-    choice_roman: Optional[str | None] = None
-    choice_number: Optional[str | int] = None
+    choice_roman: str | None
+    choice_number: int | None
 
     @field_validator("choice_number", "choice_roman")
     @classmethod

@@ -6,8 +6,8 @@ from my_project.schemes.maths import InputMax
 
 
 class NumberText:
-    def __init__(self, input_number: InputMax):
-        self.input_number = str(input_number.choice)
+    def __init__(self, input_number: int):
+        self.input_number = str(input_number)
 
     async def number_as_text(self) -> str:
         numbers_dict = {

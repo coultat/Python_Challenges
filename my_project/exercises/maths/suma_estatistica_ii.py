@@ -18,11 +18,11 @@ from my_project.schemes.maths import InputMax
 
 
 async def calc_sum_and_count_all_numbers_div_by_2_or_7(
-    input_max: InputMax,
+    input_max: int,
 ) -> Tuple[int, int]:
     counter = 1
     divisible = set()
-    while counter < input_max.choice:
+    while counter < input_max:
         if counter % 7 == 0 or counter % 2 == 0:
             divisible.add(counter)
         counter += 1

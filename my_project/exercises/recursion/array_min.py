@@ -1,7 +1,7 @@
 import sys
 
 
-async def array_min(input_value: list[str]) -> int:
+async def array_min(input_value: list[int] | list[str]) -> int:
     return await min_helper(input_value, 0, sys.maxsize)
 
 

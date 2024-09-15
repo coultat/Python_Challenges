@@ -48,7 +48,7 @@ class InputRomano(BaseModel):
 
     @field_validator("choice_roman")
     @classmethod
-    def check_type(cls, v: str) -> str:
+    def check_type_roman(cls, v: str) -> str:
         if diff := set(v.upper()).difference({"I", "V", "X", "L", "C", "D", "M"}):
             raise ValueError(f"Invalid characters given as roman {diff}")
 

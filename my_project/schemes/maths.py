@@ -56,7 +56,7 @@ class InputRomano(BaseModel):
 
     @field_validator("choice_number")
     @classmethod
-    def check_type(cls, v: str):
+    def check_type_number(cls, v: str):
         if invalid := re.findall(r"(\D|\W|_)", v):
             raise ValueError(f"input number has invalid characters {invalid}")
 

@@ -74,9 +74,8 @@ async def calculador_enteros(
 ) -> Dict[str, Union[str, int]]:
     try:
         input_number = InputRomano(choice_roman=input_number)
-        return {"result": await Romans(input_roman=input_number).roman_to_int()}
+        return {"result": await Romans(input_roman=input_number.choice_roman).roman_to_int()}
     except ValidationError as e:
-        print(f"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n {e.args}")
         return {"error": str(e)}
 
 

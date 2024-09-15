@@ -1,7 +1,7 @@
 import re
 from typing import List, Set, Tuple
 
-from pydantic import BaseModel, ValidationInfo, field_validator  # type: ignore [attr-defined]
+from pydantic import BaseModel, field_validator  # type: ignore [attr-defined]
 from pydantic_core import PydanticCustomError
 
 
@@ -43,25 +43,27 @@ class Relations(BaseModel):
 
 
 class InputRomano(BaseModel):
-    choice_roman: str | None
-    choice_number: int | None
+    choice_roman: str | None = None
+    choice_number: int | None = None
 
-    @field_validator("choice_number", "choice_roman")
+    @field_validator("choice_roman")
     @classmethod
-    def check_type(cls, v: str, info: ValidationInfo):
-        if info.field_name == "choice_roman":
-            if diff := set(v.upper()).difference({"I", "V", "X", "L", "C", "D", "M"}):
-                raise ValueError(f"Invalid characters given as roman {diff}")
-            return v.upper()
+    def check_type(cls, v: str) -> str:
+        if diff := set(v.upper()).difference({"I", "V", "X", "L", "C", "D", "M"}):
+            raise ValueError(f"Invalid characters given as roman {diff}")
 
-        elif info.field_name == "choice_number":
-            if invalid := re.findall(r"(\D|\W|_)", v):
-                raise ValueError(f"input number has invalid characters {invalid}")
+        return v
 
-            if v == "0":
-                raise ValueError("Come on! You should know that romans didn't have number 0")
+    @field_validator("choice_number")
+    @classmethod
+    def check_type(cls, v: str):
+        if invalid := re.findall(r"(\D|\W|_)", v):
+            raise ValueError(f"input number has invalid characters {invalid}")
 
-            return int(v)
+        if v == "0":
+            raise ValueError("Come on! You should know that romans didn't have number 0")
+
+        return int(v)
 
 
 class InputList(BaseModel):

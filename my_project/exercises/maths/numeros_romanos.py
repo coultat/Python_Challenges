@@ -1,12 +1,12 @@
 # Crear un programa para que nos genere números primos a partir de un int que le pasamos
 # from my_project.Exceptions import WrongInput
-from my_project.schemes.maths import InputRomano
+from typing import Optional
 
 
 class Romans:
-    def __init__(self, input_roman: InputRomano = None, input_number: InputRomano = None):
-        self.roman = input_roman.choice_roman if input_roman is not None else None
-        self.number = input_number.choice_number if input_number is not None else None
+    def __init__(self, input_roman: Optional[str] = None, input_number: Optional[int] = None):
+        self.roman = input_roman
+        self.number = input_number
 
     async def int_to_roman(self) -> str:
         result = ""

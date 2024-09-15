@@ -1,13 +1,12 @@
 import pytest
-
-from exercises.maths.numeros_a_texto import NumberText
-from exercises.maths.par_impar_III import ParImpar
-from exercises.maths.suma_basica import Calc
-from exercises.maths.suma_estatistica_ii import (
+from my_project.exercises.maths.numeros_a_texto import NumberText
+from my_project.exercises.maths.par_impar_III import ParImpar
+from my_project.exercises.maths.suma_basica import Calc
+from my_project.exercises.maths.suma_estatistica_ii import (
     calc_sum_and_count_all_numbers_div_by_2_or_7,
 )
-from exercises.maths.utils.exceptions import ZeroNumberError
-from schemes.maths import InputMax
+from my_project.exercises.maths.utils.exceptions import ZeroNumberError
+from my_project.schemes.maths import InputMax
 
 
 @pytest.mark.asyncio

@@ -17,19 +17,17 @@ recursion_router = APIRouter(prefix="/recursion")
 @recursion_router.get("/count_digits/{input_number}")
 async def sumatorio(input_number: str) -> Dict[str, Union[str, int]]:
     try:
-        input_number = InputMax(choice=input_number)
-        return {"result": await count_digits(input_number.choice)}
+        return {"result": await count_digits(input_number)}
     except ValidationError as e:
         return {"error": str(e)}
 
 
 @recursion_router.get("/fibonacci/")
 async def calcular_fibonacci(
-    input_max: str = Query(..., title="Número de veces a ser calculado"),
+    input_max: int = Query(..., title="Número de veces a ser calculado"),
 ) -> Dict[str, Union[str, int]]:
     try:
-        input_number = InputMax(choice=input_max)
-        return {"result": await fibonacci(input_number.choice)}
+        return {"result": await fibonacci(input_max)}
     except ValidationError as e:
         return {"error": str(e)}
 
@@ -40,9 +38,7 @@ async def calcular_minimo_comun_multiplo(
     segundo_numero: str = Query(..., title="Segundo de los números"),
 ) -> Dict[str, Union[str, int]]:
     try:
-        primer_numero = InputMax(choice=primer_numero)
-        segundo_numero = InputMax(choice=segundo_numero)
-        return {"result": await calc_gcd(primer_numero.choice, segundo_numero.choice)}
+        return {"result": await calc_gcd(primer_numero, segundo_numero)}
     except ValidationError as e:
         return {"error": str(e)}
 
@@ -59,10 +55,10 @@ async def calcular_reversed_string(
 
 @recursion_router.get("/calculadora_binaria")
 async def binary_calc(
-    valor: str = Query(..., title="Número para ser calculado en binario"),
+    valor_binario: str = Query(..., title="Número para ser calculado en binario"),
 ) -> Dict[str, str]:
     try:
-        valor = InputMax(choice=valor)
+        valor = InputMax(choice=valor_binario)
         return {"result": await calc_binary(valor.choice)}
     except ValidationError as e:
         return {"error": str(e.args)}
@@ -70,21 +66,21 @@ async def binary_calc(
 
 @recursion_router.get("/suma_array")
 async def summa_array(
-    valor_lista: list[int] = Query(..., title="Lista de números para que sean sumados"),
+    v_lista: list[int] = Query(..., title="Lista de números para que sean sumados"),
 ) -> Dict[str, Union[int, str]]:
     try:
-        valor_lista = InputList(choice=valor_lista)
-        return {"result": await array_sum(valor_lista.choice)}
+        # valor_lista = InputList(choice=v_lista)
+        return {"result": await array_sum(v_lista)}
     except ValidationError as e:
         return {"error": str(e)}
 
 
 @recursion_router.get("/array_min")
 async def calc_array_min(
-    valor_lista: list[int] = Query(..., title="Intruoduce una lista de números para que devuelva el valor mínimo"),
+    v_lista: list[int] = Query(..., title="Intruoduce una lista de números para que devuelva el valor mínimo"),
 ):
     try:
-        valor_lista = InputList(choice=valor_lista)
+        valor_lista = InputList(choice=v_lista)
         return {"result": await array_min(valor_lista.choice)}
     except ValidationError as e:
         return {"error": str(e)}

@@ -7,6 +7,8 @@ from my_project.exercises.recursion.fibonacci import fibonacci
 from my_project.exercises.recursion.ggt import calc_gcd
 from my_project.exercises.recursion.reverse_str import reverse_string
 
+from exercises.recursion.potencia_2 import calculo_potencia_de_dos
+
 
 @pytest.mark.parametrize("values, expected", [([1], 1), ([1, 2, 3], 6), ([1, 2, 3, -7], -1)])
 async def test_sum_rec(values, expected):
@@ -41,3 +43,8 @@ async def test_array_min(values, expected):
 @pytest.mark.parametrize("value, expected", [(2, "10"), (5, "101")])
 async def test_calc_binary(value, expected):
     assert await calc_binary(value) == expected
+
+
+@pytest.mark.parametrize("value, expected", [(8, True), (16, True), (45, False)])
+async def test_calcular_potencia_de_dos(value, expected):
+    assert calculo_potencia_de_dos(value) == expected

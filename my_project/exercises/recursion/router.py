@@ -11,6 +11,8 @@ from my_project.exercises.recursion.reverse_str import reverse_string
 from my_project.schemes.maths import InputList, InputMax
 from pydantic_core._pydantic_core import ValidationError
 
+from my_project.exercises.recursion.potencia_2 import calculo_potencia_de_dos
+
 recursion_router = APIRouter(prefix="/recursion")
 
 
@@ -84,3 +86,10 @@ async def calc_array_min(
         return {"result": await array_min(valor_lista.choice)}
     except ValidationError as e:
         return {"error": str(e)}
+
+
+@recursion_router.get("/potencia_de_dos")
+async def potencia_de_dos(
+        valor: int = Query(..., description="Dime que número quieres saber si es una potencia de dos")
+):
+    return {'result': await calculo_potencia_de_dos(valor)}

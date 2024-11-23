@@ -1,9 +1,9 @@
-from my_project.schemes.maths import InputMax, NumeroPrimo, Relations, SetPrimeNumbers
+from my_project.schemes.maths import NumeroPrimo, Relations, SetPrimeNumbers
 
 
 class CalcularNumerosPrimos:
-    def __init__(self, input_max: InputMax):
-        self.input_max = input_max.choice
+    def __init__(self, input_max: int):
+        self.input_max = input_max
 
     async def calcular_primos(self) -> SetPrimeNumbers:
         """
@@ -12,7 +12,7 @@ class CalcularNumerosPrimos:
         """
         primes_set = set()
         for i in range(1, self.input_max + 1):
-            prime = True
+            prime: bool = True
             for j in range(1, i):
                 if i % j == 0 and j != 1:
                     prime = False
@@ -31,14 +31,18 @@ class CalcularNumerosPrimos:
         Calcular todos los que tienen estas características hasta un input_max
         """
         resultados = {"gemelos": 2, "primos": 4, "sexy": 6}
-        relation = {"gemelos": [], "primos": [], "sexy": []}
+        relation: dict[str, list[dict[str, tuple[dict[str, int], dict[str, int]]]]] = {
+            "gemelos": [],
+            "primos": [],
+            "sexy": [],
+        }  # Todo change this for a proper pydantic object
         prime_numbers = await self.calcular_primos()
         for res in prime_numbers.set_prime_numbers:
             for familia, diferencia in resultados.items():
                 if res.number % 2 == 0 and res.number != 2:
                     continue
                 if NumeroPrimo(number=res.number + diferencia) in prime_numbers.set_prime_numbers:
-                    relation[familia].append(
+                    relation[familia].append(  # dict[str, tuple[dict[str, int]]
                         {
                             "parejas": (
                                 {"number": res.number},
@@ -47,4 +51,4 @@ class CalcularNumerosPrimos:
                         }
                     )
 
-        return Relations.model_validate(relation)
+        return Relations(**relation)

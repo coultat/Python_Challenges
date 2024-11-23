@@ -6,6 +6,8 @@ COPY requirements.txt ./
 
 RUN pip install -r requirements.txt
 
+ENV PYTHONPATH=/my_project
+
 COPY . /my_project
 
-CMD ["fastapi", "run", "main.py", "--port", "80"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
